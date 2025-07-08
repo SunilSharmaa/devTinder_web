@@ -1,6 +1,7 @@
 import { Outlet, Route, Routes } from "react-router"
 import Body from "./components/Body"
 import Header from "./components/Header"
+import Signup from "./pages/Signup"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Body />} />
       </Route>  
+        <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<h1>not found</h1>} />
     </Routes>
   )
