@@ -1,0 +1,1 @@
+export const DEVTINDER_BASE_URL = "http://localhost:7000";
