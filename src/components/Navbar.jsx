@@ -1,11 +1,22 @@
+import axios from "axios";
 import React from "react";
+import { DEVTINDER_BASE_URL } from "../utils/constants";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
+    const logout = async()=> {
+        await axios.post(DEVTINDER_BASE_URL + "/logout");
+        navigate("/signin");
+    }
+
   return (
     <>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-base-100 shadow-sm fixed top-0">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a href="/" className="btn btn-ghost text-xl">daisyUI</a>
         </div>
         <div className="flex gap-2">
           <input
@@ -31,16 +42,16 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                <a href="/editProfile" className="justify-between">
+                 Edit Profile
+                  
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <a href="/connections">Connections</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={logout}>Logout</a>
               </li>
             </ul>
           </div>
