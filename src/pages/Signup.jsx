@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { DEVTINDER_BASE_URL } from "../utils/constants";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("shivam");
@@ -11,7 +12,7 @@ const Signup = () => {
 
   const signupUser = async () => {
     try {
-      const response = await axios.post("http://localhost:7000/signup", {
+      const response = await axios.post(DEVTINDER_BASE_URL + "/signup", {
         firstName,
         lastName,
         gender,
