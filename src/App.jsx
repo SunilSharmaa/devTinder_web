@@ -4,11 +4,39 @@ import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import Footer from "./components/Footer";
-import Connection from "./pages/Connection";
+import Request from "./pages/Request";
 import EditProfile from "./pages/EditProfile";
+import Connection from "./pages/Connection";
+import Chat from "./components/Chat";
+import { useEffect } from "react";
+import { DEVTINDER_BASE_URL } from "./utils/constants";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { addUser } from "./redux/userSlice";
 
 function App() {
+  const dispatch = useDispatch();
   const Layout = () => {
+
+    useEffect(()=> {
+      const hydrateUser = async () => {
+        try{
+          const res = await axios.get(
+            DEVTINDER_BASE_URL + "/profile/view", {
+              withCredentials : true
+            }
+          );
+
+          dispatch(addUser(res?.data?.data));
+
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      hydrateUser();
+    },[])
+    
     return (
       <>
         <header>
@@ -28,8 +56,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Body />} />
-        <Route path="/connections" element={<Connection />} />
+        <Route path="/request" element={<Request />} />
         <Route path="/editProfile" element={<EditProfile />} />
+        <Route path="/connection" element={<Connection />} />
+        <Route path="/chat/:targetUserId" element={<Chat />} />
       </Route>
       <Route path="/signup" element={<Signup />} />
       <Route path="/signin" element={<Signin />} />
