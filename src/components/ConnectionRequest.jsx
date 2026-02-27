@@ -2,21 +2,22 @@ import axios from "axios";
 import React from "react";
 import { DEVTINDER_BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { removeConnectionRequest } from "../redux/connectionSlice";
+import { removeConnectionRequest } from "../redux/connectionRequestSlice";
 
 const ConnectionRequest = ({ user }) => {
-    const dispatch = useDispatch();
-    
-    
+  const dispatch = useDispatch();
+
   const acceptConnectionRequest = async () => {
     try {
       const response = await axios.post(
-        DEVTINDER_BASE_URL + "/request/review/accepted/" + user?.fromUserId?._id,
+        DEVTINDER_BASE_URL +
+          "/request/review/accepted/" +
+          user?.fromUserId?._id,
         {},
         { withCredentials: true }
       );
       console.log(response);
-      dispatch(removeConnectionRequest(user?._id))
+      dispatch(removeConnectionRequest(user?._id));
     } catch (err) {
       console.log(err);
     }
@@ -25,12 +26,14 @@ const ConnectionRequest = ({ user }) => {
   const rejectConnectionRequest = async () => {
     try {
       const response = await axios.post(
-        DEVTINDER_BASE_URL + "/request/review/rejected/" + user?.fromUserId?._id,
+        DEVTINDER_BASE_URL +
+          "/request/review/rejected/" +
+          user?.fromUserId?._id,
         {},
         { withCredentials: true }
       );
       console.log(response);
-      dispatch(removeConnectionRequest(user?._id))
+      dispatch(removeConnectionRequest(user?._id));
     } catch (err) {
       console.log(err);
     }
