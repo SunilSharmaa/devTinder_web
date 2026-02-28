@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { DEVTINDER_BASE_URL } from "../utils/constants";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Navbar = () => {
 
@@ -16,7 +16,7 @@ const Navbar = () => {
     <>
       <div className="navbar bg-base-100 shadow-sm fixed top-0">
         <div className="flex-1">
-          <a href="/" className="btn btn-ghost text-xl">daisyUI</a>
+          <Link href="/" className="btn btn-ghost text-xl">daisyUI</Link>
         </div>
         <div className="flex gap-2">
           <input
@@ -42,16 +42,19 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a href="/editProfile" className="justify-between">
+                <Link to="/editProfile" className="justify-between">
                  Edit Profile
                   
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/connections">Connections</a>
+                <Link to="/request">Request</Link>
               </li>
               <li>
-                <a onClick={logout}>Logout</a>
+                <Link to="/connection">Connection</Link>
+              </li>
+              <li>
+                <button onClick={logout}>Logout</button>
               </li>
             </ul>
           </div>
