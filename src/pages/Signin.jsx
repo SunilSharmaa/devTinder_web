@@ -25,6 +25,7 @@ const Signin = () => {
       );
 
       dispatch(addUser(response?.data?.data));
+      console.log(response?.data?.data);
       navigate("/")
       
     } catch (err) {
